@@ -32,8 +32,9 @@ void introduire(){
 
 	}
 		comptes compte[1000];
+		int N;
 	void introduirePLUS(){
-		int N,i;
+		int i;
 	    printf("veuiller Entrez le nombre de comptes que vous souhaitez creer: ");
 	    scanf("%d",&N);
 
@@ -47,7 +48,7 @@ void introduire(){
 	       	scanf("%s",compte[i].nom);
 	       	printf("\nle prenom:");
 	       	scanf("%s",compte[i].prenom);
-	       	printf("les information des client est:");
+	       	printf("les information des client est:\n");
 	        printf("\n %f,%s,%s,%s",compte[i].montant,compte[i].CIN,compte[i].nom,compte[i].prenom);
 
 	 }
@@ -67,7 +68,7 @@ void introduire(){
               if (strcmp(CIN,compte[i].CIN) == 0){
               	X=i;
 			  }
-
+			  
                   }
             printf("entrer le montant:");
             scanf("%f",&men);
@@ -80,6 +81,21 @@ void introduire(){
                }
 
 }
+void Affichage(){
+ 	    int affichage;
+ 	    printf("    \n\n Affichage     ");
+ 	    printf("\n taper votre choix:\n\n");
+ 	    printf("1:Ascendant    2:Descendant  \n\n 3: Ascendant (les comptes bancaires ayant un montant supérieur a un chiffre introduit)  \n\n4:Descendant (les comptes bancaires ayant un montant supérieur a un chiffre introduit) ");
+ 	    scanf("%d",&affichage);
+ 	    switch(affichage){
+ 	    	case 1: Ascendant();
+ 	    	break;
+ 	    	case 2: Descendant();
+ 	    	break;
+ 	    	case 3: Ascendant_tri();
+ 	    	break;
+ 	    }
+		 }
   void depot(){
             float men;
         	int i;
@@ -96,29 +112,16 @@ void introduire(){
             printf("entrer le montant:");
             scanf("%f",&men);
 
-
+    
                    // solde retrait
                 compte[X].montant=compte[X].montant+men;
                 printf("votre solde=%f",compte[X].montant);
 
  }
- void Affichage(){
- 	    int affichage;
- 	    printf("    Affichage     ");
- 	    printf("\n\n taper votre choix:");
- 	    printf("1:Ascendant    2:Descendant");
- 	    scanf("%d",&affichage);
- 	    switch(affichage){
- 	    	case 1: Ascendant();
- 	    	break;
- 	    	case 2: Descendant();
- 	    	break;
- 	    }
-		 }
+ 
  void Ascendant(){
- 	    int N , X,i,j ;
- 	   	printf("\n veuiller entrer le nombre de compte:");
- 	   	scanf("%d",&N);
+ 	    int X,i,j ;
+ 	    
  	   	for(i=0;i<N-1;i++)
  	   	for(j=i+1;j<N;j++){
  	   		if(compte[i].montant>compte[j].montant){
@@ -128,17 +131,18 @@ void introduire(){
 				}
  	   		}
 
- 	   		printf("\n\n apre le triage:");
+ 	   		printf("\n\n      apre le triage\n");
  	   		for(i=0;i<N;i++)
- 	   		printf("%.2f",compte[i].montant);
+ 	   		printf("montant:%f,CIN:%s,NOM:%s,prenom:%s\n ",compte[i].montant,compte[i].CIN,compte[i].nom,compte[i].prenom);
  }
+    
 void Descendant(){
-        int N , X,i,j ;
- 	   	printf("\n veuiller entrer le nombre de compte:");
+        int   X,i,j , N ;
+ 	   	printf("\n     veuiller entrer le nombre de compte:");
  	   	scanf("%d",&N);
  	   	for(i=0;i<N-1;i++)
- 	   	for(j=i+1;j>N;j++){
- 	   		if(compte[i].montant>compte[j].montant){
+ 	   	for(j=i+1;j<N;j++){
+ 	   		if(compte[i].montant<compte[j].montant){
  	   		   	X=compte[i].montant;
  	   		   	compte[i].montant=compte[j].montant;
  	   		   	compte[j].montant=X;
@@ -147,15 +151,27 @@ void Descendant(){
 
  	   		printf("\n\n apre le triage:");
  	   		for(i=0;i<N;i++)
- 	   		printf("%.2f",compte[i].montant);
+ 	   		printf("\n %f,%s,%s,%s",compte[i].montant,compte[i].CIN,compte[i].nom,compte[i].prenom);
 }
-
+Ascendant_tri(){
+	     Ascendant();
+		 float men;
+		 int i,x; 
+	     printf("entrer montant:");
+	     scanf("%f",&men);
+	     for(i=0;i<=N;i++)
+	     	for(x=i;x<=N;x++)
+	     		if(men<=compte[i].montant)
+		 
+		        printf("%f",compte[i].montant);
+}
 void operations(){
 	    int choix;
-	    printf("veuiller Tapez le numéro de choix que vous voulez:");
-	    printf("\n1:Retrait");
-	    printf("\n2:Depot");
-	    scanf("\n%d",&choix);
+	    
+	    printf("\n     1:Retrait");
+	    printf("\n     2:Depot");
+	    printf("\n\n veuiller Tapez le numero de choix que vous voulez:");
+	    scanf("%d",&choix);
 	    switch(choix){
 	    	case 1:	retrait();
 		    break;
@@ -170,15 +186,15 @@ void menu()
        int choix;
        do
        {
-        printf(" >>>>>>>>>>>>>menu de cette application<<<<<<<<<<<<<<<<        ");
+        printf("  \n           *menu de cette application                ");
 
-			    printf("\n\n1:Introduire un compte bancaire\n");
-			    printf("2:Introduire plusieurs comptes bancaires\n");
-			    printf("3:Operation sur un compte client\n");
-			    printf("4:Affichage\n");
-			    printf("5:Fidelisation\n");
-			    printf("6:Quitter l'application\n");
-			    printf("       \nvotre choix: ");
+			    printf("\n\n               1:Introduire un compte bancaire");
+			    printf("\n\n               2:Introduire plusieurs comptes bancaires\n");
+			    printf("\n\n               3:Operation sur un compte client\n");
+			    printf("\n\n               4:Affichage\n");
+			    printf("\n\n               5:Fidelisation\n");
+			    printf("\n\n               6:Quitter l'application\n");
+			    printf(" \n\n              votre choix: ");
 			    scanf("%d",&choix);
 			         switch(choix)
 			           {
@@ -201,3 +217,4 @@ int main(){
     return 0;
 
 }
+
