@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-	
+
 
 
 typedef struct {
@@ -14,7 +14,7 @@ typedef struct {
 
 
 void introduire(){
-	     
+
 	     float montant;
 	     char   CIN[8]  ;
 	     char   nom[12] ;
@@ -29,17 +29,17 @@ void introduire(){
 	     printf("montant:");
 	     scanf("%s",&montant);
 	     printf("%s%s%s%s",CIN,nom,prenom,montant);
-         
+
 	}
 		comptes compte[1000];
 	void introduirePLUS(){
 		int N,i;
 	    printf("veuiller Entrez le nombre de comptes que vous souhaitez creer: ");
 	    scanf("%d",&N);
-      
-       	
-       	for(i=1;i<=N;i++){
-	        printf("\nmontant:");
+
+
+       	for(i=0;i<=N-1;i++){
+	        printf("\n entrer montant:");
 	        scanf("%f",&compte[i].montant);
 	       	printf("\nCIN:");
 	       	scanf("%s",compte[i].CIN);
@@ -48,26 +48,27 @@ void introduire(){
 	       	printf("\nle prenom:");
 	       	scanf("%s",compte[i].prenom);
 	       	printf("les information des client est:");
-	        printf("\n %f,%s,%s,%s",compte[i].montant,compte[i].CIN,compte[i].nom,compte[i].prenom);		
-	       	
+	        printf("\n %f,%s,%s,%s",compte[i].montant,compte[i].CIN,compte[i].nom,compte[i].prenom);
+
 	 }
-       
+
 
 }
-    void retrait(){
+  void retrait(){
             float men;
         	int i;
         	 int X;
             char CIN[8];
             float resultat;
-             
+
             printf(" entrer CIN: ");
             scanf("%s",CIN);
             for(i=0;i<50;i++){
-              if (strcmp(CIN,compte[i].CIN) == 0)
-                  X=i;
-            }
-            
+              if (strcmp(CIN,compte[i].CIN) == 0){
+              	X=i;
+			  }
+
+                  }
             printf("entrer le montant:");
             scanf("%f",&men);
             if(men>compte[X].montant)
@@ -75,9 +76,9 @@ void introduire(){
             else
                {    // solde retrait
                 compte[X].montant=compte[X].montant-men;
-                printf("votre solde=%f",compte[X].montant); 
-               }     
-   
+                printf("-----votre solde=%.2f",compte[X].montant);
+               }
+
 }
   void depot(){
             float men;
@@ -91,21 +92,63 @@ void introduire(){
               if (strcmp(CIN,compte[i].CIN) == 0)
                   X=i;
             }
-            
+
             printf("entrer le montant:");
             scanf("%f",&men);
-            
-            
+
+
                    // solde retrait
                 compte[X].montant=compte[X].montant+men;
-                printf("votre solde=%f",compte[X].montant); 
-                     
+                printf("votre solde=%f",compte[X].montant);
+
  }
-    
-    
-    
-              
-    
+ void Affichage(){
+ 	    int affichage;
+ 	    printf("    Affichage     ");
+ 	    printf("\n\n taper votre choix:");
+ 	    printf("1:Ascendant    2:Descendant");
+ 	    scanf("%d",&affichage);
+ 	    switch(affichage){
+ 	    	case 1: Ascendant();
+ 	    	break;
+ 	    	case 2: Descendant();
+ 	    	break;
+ 	    }
+		 }
+ void Ascendant(){
+ 	    int N , X,i,j ;
+ 	   	printf("\n veuiller entrer le nombre de compte:");
+ 	   	scanf("%d",&N);
+ 	   	for(i=0;i<N-1;i++)
+ 	   	for(j=i+1;j<N;j++){
+ 	   		if(compte[i].montant>compte[j].montant){
+ 	   		   	X=compte[i].montant;
+ 	   		   	compte[i].montant=compte[j].montant;
+ 	   		   	compte[j].montant=X;
+				}
+ 	   		}
+
+ 	   		printf("\n\n apre le triage:");
+ 	   		for(i=0;i<N;i++)
+ 	   		printf("%.2f",compte[i].montant);
+ }
+void Descendant(){
+        int N , X,i,j ;
+ 	   	printf("\n veuiller entrer le nombre de compte:");
+ 	   	scanf("%d",&N);
+ 	   	for(i=0;i<N-1;i++)
+ 	   	for(j=i+1;j>N;j++){
+ 	   		if(compte[i].montant>compte[j].montant){
+ 	   		   	X=compte[i].montant;
+ 	   		   	compte[i].montant=compte[j].montant;
+ 	   		   	compte[j].montant=X;
+				}
+ 	   		}
+
+ 	   		printf("\n\n apre le triage:");
+ 	   		for(i=0;i<N;i++)
+ 	   		printf("%.2f",compte[i].montant);
+}
 
 void operations(){
 	    int choix;
@@ -127,34 +170,34 @@ void menu()
        int choix;
        do
        {
-        printf("        menu de cette application        ");
+        printf(" >>>>>>>>>>>>>menu de cette application<<<<<<<<<<<<<<<<        ");
 
-	    printf("\n1:Introduire un compte bancaire");
-        printf("\n2:Introduire plusieurs comptes bancaires");
-        printf("\n3:Operation sur un compte client");
-        printf("\n4:Affichage");
-        printf("\n5:Fidelisation");
-        printf("\n6:Quitter l'application'");
-        printf("\nvotre choix: ");
-        scanf("%d",&choix);
-             switch(choix)
-               {
-               	    case 1:introduire();
-                    case 2:introduirePLUS();
-                    case 3:operations();
-                   /* case 4:
-                     case 5:*/
+			    printf("\n\n1:Introduire un compte bancaire\n");
+			    printf("2:Introduire plusieurs comptes bancaires\n");
+			    printf("3:Operation sur un compte client\n");
+			    printf("4:Affichage\n");
+			    printf("5:Fidelisation\n");
+			    printf("6:Quitter l'application\n");
+			    printf("       \nvotre choix: ");
+			    scanf("%d",&choix);
+			         switch(choix)
+			           {
+			           	    case 1:introduire();
+			                case 2:introduirePLUS();
+			                case 3:operations();
+			                case 4:Affichage();
+			                //case 5:
+					   }
+
 			   }
+			   while (choix != 6 );
 
-       }
-       while (choix != 6 );
-       
 }
 
 int main(){
-	 
+
 
 	    menu();
     return 0;
-	
+
 }
