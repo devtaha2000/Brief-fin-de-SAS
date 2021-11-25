@@ -12,7 +12,8 @@ typedef struct {
 
 }comptes;
 
-
+comptes compte[1000];
+		int N;
 void introduire(){
 
 	     float montant;
@@ -31,25 +32,24 @@ void introduire(){
 	     printf("%s%s%s%s",CIN,nom,prenom,montant);
 
 	}
-		comptes compte[1000];
-		int N;
+		
 	void introduirePLUS(){
 		int i;
-	    printf("veuiller Entrez le nombre de comptes que vous souhaitez creer: ");
+	    printf("\n               veuiller Entrez le nombre de comptes que vous souhaitez creer: ");
 	    scanf("%d",&N);
 
-
+        
        	for(i=0;i<=N-1;i++){
-	        printf("\n entrer montant:");
+	        printf("\n\n         entrer montant:");
 	        scanf("%f",&compte[i].montant);
-	       	printf("\nCIN:");
+	       	printf("\n           CIN:");
 	       	scanf("%s",compte[i].CIN);
-	       	printf("\nle nom:");
+	       	printf("\n           le nom:");
 	       	scanf("%s",compte[i].nom);
-	       	printf("\nle prenom:");
+	       	printf("\n           le prenom:");
 	       	scanf("%s",compte[i].prenom);
-	       	printf("les information des client est:\n");
-	        printf("\n %f,%s,%s,%s",compte[i].montant,compte[i].CIN,compte[i].nom,compte[i].prenom);
+	       	printf("\n           les information des client est:");
+	        printf("         \nmontant: %f| ,|CIN: %s | ,|nom: %s | prenom:%s |",compte[i].montant,compte[i].CIN,compte[i].nom,compte[i].prenom);
 
 	 }
 
@@ -81,41 +81,28 @@ void introduire(){
                }
 
 }
-void Affichage(){
- 	    int affichage;
- 	    printf("    \n\n Affichage     ");
- 	    printf("\n taper votre choix:\n\n");
- 	    printf("1:Ascendant    2:Descendant  \n\n 3: Ascendant (les comptes bancaires ayant un montant supérieur a un chiffre introduit)  \n\n4:Descendant (les comptes bancaires ayant un montant supérieur a un chiffre introduit) ");
- 	    scanf("%d",&affichage);
- 	    switch(affichage){
- 	    	case 1: Ascendant();
- 	    	break;
- 	    	case 2: Descendant();
- 	    	break;
- 	    	case 3: Ascendant_tri();
- 	    	break;
- 	    }
-		 }
+
   void depot(){
-            float men;
-        	int i;
-        	 int X;
-            char CIN[8];
-            float resultat;
-       printf(" entrer CIN: ");
-            scanf("%s",CIN);
-            for(i=0;i<50;i++){
-              if (strcmp(CIN,compte[i].CIN) == 0)
-                  X=i;
-            }
+        float men;
+    	int i;
+    	 int X;
+        char CIN[8];
+        float resultat;
+       	printf(" entrer CIN: ");
+        scanf("%s",CIN);
+        for(i=0;i<50;i++)
+		{
+          if (strcmp(CIN,compte[i].CIN) == 0)
+              X=i;
+        }
 
-            printf("entrer le montant:");
-            scanf("%f",&men);
+        printf("entrer le montant:");
+        scanf("%f",&men);
 
-    
-                   // solde retrait
-                compte[X].montant=compte[X].montant+men;
-                printf("votre solde=%f",compte[X].montant);
+
+               // solde retrait
+        compte[X].montant=compte[X].montant+men;
+        printf("votre solde=%f",compte[X].montant);
 
  }
  
@@ -133,7 +120,7 @@ void Affichage(){
 
  	   		printf("\n\n      apre le triage\n");
  	   		for(i=0;i<N;i++)
- 	   		printf("montant:%f,CIN:%s,NOM:%s,prenom:%s\n ",compte[i].montant,compte[i].CIN,compte[i].nom,compte[i].prenom);
+ 	   		printf(" montant:%f,CIN:%s,NOM:%s,prenom:%s\n ",compte[i].montant,compte[i].CIN,compte[i].nom,compte[i].prenom);
  }
     
 void Descendant(){
@@ -156,18 +143,36 @@ void Descendant(){
 Ascendant_tri(){
 	     Ascendant();
 		 float men;
-		 int i,x; 
+		 int i; 
 	     printf("entrer montant:");
 	     scanf("%f",&men);
-	     for(i=0;i<=N;i++)
-	     	for(x=i;x<=N;x++)
-	     		if(men<=compte[i].montant)
-		 
-		        printf("%f",compte[i].montant);
+	     for(i=0;i<N;i++){
+	     	if(compte[i].montant<men){
+	     		 printf("CIN:%s",compte[i].CIN);
+		         printf("\n|nom:%s",compte[i].nom);
+		         printf("\n|prenom:%s",compte[i].prenom);
+		         printf("\n|montant:%.2f",compte[i].montant);
+			 }
+		     
+		 }
+	     	
+}
+Descendant_tri(){
+	 float men;
+		 int i; 
+	     printf("entrer montant:");
+	     scanf("%f",&men);
+	     for(i=0;i<N;i++){
+	     	if(compte[i].montant>men){
+	     		 printf("%s",compte[i].CIN);
+		         printf("%s",compte[i].nom);
+		         printf("%s",compte[i].prenom);
+		    }     printf("%f",compte[i].montant);
+}
 }
 void operations(){
 	    int choix;
-	    
+	    printf("\n\n     les operation");
 	    printf("\n     1:Retrait");
 	    printf("\n     2:Depot");
 	    printf("\n\n veuiller Tapez le numero de choix que vous voulez:");
@@ -180,7 +185,25 @@ void operations(){
 		}
 }
 
-
+void Affichage(){
+ 	    int affichage;
+ 	    printf("    \n\n Affichage     ");
+ 	    printf("\n\n            1:Ascendant   \n\n            2:Descendant  \n\n           3:Ascendant (les comptes bancaires ayant un montant supérieur a un chiffre introduit)  \n\n           4:Descendant (les comptes bancaires ayant un montant supérieur a un chiffre introduit) \n\n           5:rechrche par CIN");
+ 	     printf("\n\n        taper votre choix:");
+		 scanf("%d",&affichage);
+ 	    switch(affichage){
+ 	    	case 1: Ascendant();
+ 	    	break;
+ 	    	case 2: Descendant();
+ 	    	break;
+ 	    	case 3: Ascendant_tri();
+ 	    	break;
+ 	    	case 4:Descendant_tri();
+ 	    	break;
+ 	    	//case 5:rechrche_CIN();
+ 	    	//break;
+ 	    }
+		 }
 void menu()
 {
        int choix;
