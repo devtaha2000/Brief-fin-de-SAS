@@ -64,7 +64,7 @@ void introduire(){
 
             printf(" entrer CIN: ");
             scanf("%s",CIN);
-            for(i=0;i<50;i++){
+            for(i=0;i<N;i++){
               if (strcmp(CIN,compte[i].CIN) == 0){
               	X=i;
 			  }
@@ -184,6 +184,27 @@ void operations(){
 		    break;
 		}
 }
+rechrche_CIN(){
+	     char CIN;
+	     char nom;
+	     char prenom;
+	     float montant;
+	     int i;
+	    printf(" entrer CIN: ");
+            scanf("%s",CIN);
+            for(i=0;i<N;i++){
+              if (strcmp(CIN,compte[i].CIN) == 0){
+              	printf("%s",compte[i].CIN);
+		         printf("%s",compte[i].nom);
+		         printf("%s",compte[i].prenom);
+		         printf("%f",compte[i].montant);
+			  }
+              	
+			   
+                
+	  
+}
+}
 
 void Affichage(){
  	    int affichage;
@@ -200,16 +221,17 @@ void Affichage(){
  	    	break;
  	    	case 4:Descendant_tri();
  	    	break;
- 	    	//case 5:rechrche_CIN();
- 	    	//break;
+ 	    	case 5:rechrche_CIN();
+ 	    	break;
  	    }
 		 }
+
 void menu()
 {
        int choix;
        do
        {
-        printf("  \n           *menu de cette application                ");
+        printf("  \n           -menu de cette application                ");
 
 			    printf("\n\n               1:Introduire un compte bancaire");
 			    printf("\n\n               2:Introduire plusieurs comptes bancaires\n");
@@ -225,7 +247,7 @@ void menu()
 			                case 2:introduirePLUS();
 			                case 3:operations();
 			                case 4:Affichage();
-			                //case 5:
+			                //case 5:fedilisation();
 					   }
 
 			   }
