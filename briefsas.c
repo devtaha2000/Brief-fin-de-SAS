@@ -1,35 +1,44 @@
 #include<stdio.h>
-#include<stdlib.h>
 
 
 
-typedef struct {
 
-    	float montant;
-    	char   CIN[8]  ;
-    	char   nom[12] ;
-     	char prenom[20] ;
-
-}comptes;
-
-comptes compte[1000];
-		int N;
-void introduire(){
-
-	     float montant;
-	     char   CIN[8]  ;
-	     char   nom[12] ;
-	     char prenom[20] ;
-	     printf("veuiller entrer les information suivant :");
-	     printf("\nCIN:");
-	     scanf("%s",CIN);
-	     printf("le nom:");
-	     scanf("%s,nom");
-	     printf("le prenom:");
-	     scanf("%s",&prenom);
-	     printf("montant:");
-	     scanf("%s",&montant);
-	     printf("%s%s%s%s",CIN,nom,prenom,montant);
+		typedef struct {
+		
+			float montant;
+			char   CIN[8]  ;
+			char   nom[12] ;
+		 	char prenom[20] ;
+		
+		}comptes;
+		
+			comptes compte[1000];
+			int N;
+			
+		typedef struct {
+			
+		     float montant;
+		     char   CIN[8]  ;   
+		     char   nom[12] ;
+		     char prenom[20] ;
+		     
+		}compteu;
+		
+	
+			
+		void introduire(){
+			
+		 compteu comptee[0];
+	     printf("\n\n        veuiller entrer les information suivant :");
+	     printf("\n\n        CIN:");
+	     scanf("%s",&comptee[0].CIN);
+	     printf("\n\n        le nom:");
+	     scanf("%s",&comptee[0].nom);             
+	     printf("\n\n        le prenom:");     
+	     scanf("%s",&comptee[0].prenom);
+	     printf("\n\n        montant:");
+	     scanf("%.2f",&comptee[0].montant);
+	     printf("\n\n |CIN:%s |nom:%s |prenom:%s|montant:%.2f| ",comptee[0].CIN,comptee[0].nom,comptee[0].prenom,comptee[0].montant);
 
 	}
 		
@@ -175,7 +184,7 @@ void operations(){
 	    printf("\n\n     les operation");
 	    printf("\n     1:Retrait");
 	    printf("\n     2:Depot");
-	    printf("\n\n veuiller Tapez le numero de choix que vous voulez:");
+	    printf("\n\n veuiller Tapez le numero de choix que vous voul++ez:");
 	    scanf("%d",&choix);
 	    switch(choix){
 	    	case 1:	retrait();
